@@ -22,7 +22,7 @@ namespace MvcStory.Models
 
         [Display(Name = "Release Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:DAY-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
         [Display(Name = "Rate")]
