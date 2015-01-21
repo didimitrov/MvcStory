@@ -1,3 +1,4 @@
+using System;
 using MvcStory.Models;
 
 namespace MvcStory.Migrations
@@ -17,33 +18,37 @@ namespace MvcStory.Migrations
         new Story
         {
             Title = "When Harry Met Sally",
-         // ReleaseDate = DateTime.Parse("1989-1-11"),
+            ReleaseDate = DateTime.Now,   //Parse("2015-1-30")
             Text = "Romantic Comedy Romantic Comedy Romantic Comedy Romantic Comedy Romantic Comedy",
-          //  Price = 7.99M
+            Rating = 3
+          
         },
 
          new Story
          {
              Title = "Ghostbusters ",
-        //   ReleaseDate = DateTime.Parse("1984-3-13"),
+             ReleaseDate = DateTime.Parse("1-13-2015"),
              Text = "Comedy Comedy Comedy Comedy Comedy Comedy",
-        //     Price = 8.99M
+             Rating = 3
+
          },
 
          new Story
          {
              Title = "Ghostbusters 2",
-       //    ReleaseDate = DateTime.Parse("1986-2-23"),
+             ReleaseDate = DateTime.Parse("2-01-2015"),
              Text = "Comedy bababababababababababbababab",
-         //    Price = 9.99M
+             Rating = 3
+
          },
 
        new Story
        {
            Title = "Rio Bravo",
-      //   ReleaseDate = DateTime.Parse("1959-4-15"),
+           ReleaseDate = DateTime.Now, //Parse("2015-1-30"),
            Text = "Western Gang Western GangWestern GangWestern GangWestern Gang ",
-         //  Price = 3.99M
+           Rating = 3
+
        }
    );
             //  This method will be called after migrating to the latest version.

@@ -128,6 +128,10 @@
     <Compile Include="Migrations\201501210856586_Initial.Designer.cs">
       <DependentUpon>201501210856586_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501210958386_RatingNDate.cs" />
+    <Compile Include="Migrations\201501210958386_RatingNDate.Designer.cs">
+      <DependentUpon>201501210958386_RatingNDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,15 +168,18 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Story\Create.cshtml" />
     <Content Include="Views\Story\Delete.cshtml" />
     <Content Include="Views\Story\Details.cshtml" />
     <Content Include="Views\Story\Edit.cshtml" />
+    <Content Include="Views\Story\Create.cshtml" />
     <Content Include="Views\Story\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501210856586_Initial.resx">
       <DependentUpon>201501210856586_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501210958386_RatingNDate.resx">
+      <DependentUpon>201501210958386_RatingNDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ namespace MvcStory.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,Text")] Story story)
+        public ActionResult Create([Bind(Include="Id,Title,Text,Rating")] Story story)
         {          
             if (ModelState == null || !ModelState.IsValid) return View(story);
             _db.Stories.Add(story);
