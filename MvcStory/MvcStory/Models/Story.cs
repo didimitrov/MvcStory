@@ -31,15 +31,7 @@ namespace MvcStory.Models
         public byte Rating { get; set; }
 
         public string Photo { get; set; }
-
-        //public String Image     
-        //{
-        //    get
-        //    {
-        //        return "~/Content/Images/hire_asp_net_developer.png";
-        //    }
-
-        //}       
+             
     }
 
     public class StoryDbContext : DbContext

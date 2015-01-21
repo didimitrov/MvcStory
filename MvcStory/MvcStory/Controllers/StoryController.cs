@@ -101,38 +101,7 @@ namespace MvcStory.Controllers
             return View(story);
         }
 
-        // GET: /Story/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Story story = db.Stories.Find(id);
-        //    if (story == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(story);
-        //}
-
-        //// POST: /Story/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include="Id,Title,Content,Date,Rate")] Story story)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(story).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(story);
-        //}
-
-        // GET: /Story/Delete/5
+      
         public ActionResult Delete(int? id)
         {
             if (id == null)
