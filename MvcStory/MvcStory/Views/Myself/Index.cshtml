@@ -1,0 +1,26 @@
+﻿@using System.Configuration
+@{
+    ViewBag.Title = "AboutMe";
+}
+
+<h2>AboutMe</h2>
+
+<div>@Html.Label("Name: ") @ConfigurationManager.AppSettings["AutorName"]</div>
+<div>@Html.Label("Born: ") @ConfigurationManager.AppSettings["BornDate"]</div>
+<div>@Html.Label("Info: ") @ConfigurationManager.AppSettings["AutorInfo"]</div>
+<div>
+    @Html.Label("Image: ") <br />
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <a href="#" class="thumbnail">
+                <img src=@Url.Content("~/Content/Image/hire_asp_net_developer.png") />
+            </a>
+        </div>
+
+    </div>
+
+</div>
+<hr />
+
+@Html.ActionLink("Stories", "Index", "Story")>
+
