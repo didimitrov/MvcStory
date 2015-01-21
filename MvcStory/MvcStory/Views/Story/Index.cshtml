@@ -29,7 +29,7 @@
     }
 </p>
 
-<span class="label label-default">Sort by:</span>
+<span class="label label-info">Sort by:</span>
 <div class="btn-group" role="group" aria-label="...">
     <button type="button" class="btn btn-default">@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</button>
     <button type="button" class="btn btn-default">@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</button>
@@ -57,7 +57,7 @@ else
                 @*<div class="row">*@
                 <div class="col-xs-6 col-md-4">
                     <a href="#" class="thumbnail">
-                        <img src="~/Content/Image/hire_asp_net_developer.png" />
+                        <img id="img" src="~/Content/Image/hire_asp_net_developer.png" alt="img"/>
                     </a>
                 </div>
                 @*</div>*@
@@ -65,8 +65,9 @@ else
                 @Html.DisplayFor(modelItem => item.ReleaseDate) <br />
                 @Html.DisplayFor(modelItem => item.Text)  <br />
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </div>
             </div>
-        </div>
+        
     }
 }
 
