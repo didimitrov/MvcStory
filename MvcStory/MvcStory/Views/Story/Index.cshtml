@@ -20,7 +20,7 @@
             <div class="col-lg-6">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Go!</button>
+                        <button class="btn btn-primary" type="submit">Go!</button>
                     </span>
                     <input type="text" name="SearchString" class="form-control" placeholder="Search for...">
                 </div>
@@ -29,7 +29,7 @@
     }
 </p>
 
-<span class="label label-info">Sort by:</span>
+<span class="label label-primary">Sort by:</span>
 <div class="btn-group" role="group" aria-label="...">
     <button type="button" class="btn btn-default">@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</button>
     <button type="button" class="btn btn-default">@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</button>
@@ -49,7 +49,7 @@ else
     foreach (var item in Model)
     {
       
-        <div class="panel panel-primary">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">@Html.DisplayFor(modelItem => item.Title)</h3>
             </div>
