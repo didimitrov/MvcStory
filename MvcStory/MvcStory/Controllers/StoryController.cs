@@ -1,20 +1,58 @@
-﻿using System.Data.Entity;
+﻿using System;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using MvcStory.Models;
+using PagedList;
 
 namespace MvcStory.Controllers
 {
     public class StoryController : Controller
     {
-// ReSharper disable once FieldCanBeMadeReadOnly.Local
-        private StoryDbContext _db = new StoryDbContext();
+        private StoryDbContext db = new StoryDbContext();
 
         // GET: /Story/
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(_db.Stories.ToList());
+            var stories = from s in db.Stories
+                          select s;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    stories = stories.OrderByDescending(s => s.Title);
+                    break;
+                case "Date":
+                    stories = stories.OrderBy(s => s.ReleaseDate);
+                    break;
+                case "date_desc":
+                    stories = stories.OrderByDescending(s => s.ReleaseDate);
+                    break;
+                default:
+                    stories = stories.OrderByDescending(s => s.ReleaseDate);
+                    break;
+            }
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                stories = stories.Where(s => s.Title.Contains(searchString));
+            }
+
+            var pageSize = 2;
+            var pageNumber = (page ?? 1);
+            return View(stories.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Story/Details/5
@@ -24,7 +62,7 @@ namespace MvcStory.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var story = _db.Stories.Find(id);
+            Story story = db.Stories.Find(id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -43,44 +81,56 @@ namespace MvcStory.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,Text,Rating")] Story story)
-        {          
-            if (ModelState == null || !ModelState.IsValid) return View(story);
-            _db.Stories.Add(story);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+        public ActionResult Create([Bind(Include = "Id,Title,Content,Date,Rate,Photo")] Story story)
+        {
+            //var newStory = new Story
+            //{
+            //    Id = story.Id,
+            //    Title = story.Title,
+            //    Content = story.Content,
+            //    Date = DateTime.Now,
+            //    Rate = story.Rate
+            //};
+            if (ModelState.IsValid)
+            {
+                db.Stories.Add(story);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(story);
         }
 
         // GET: /Story/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Story story = _db.Stories.Find(id);
-            if (story == null)
-            {
-                return HttpNotFound();
-            }
-            return View(story);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Story story = db.Stories.Find(id);
+        //    if (story == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(story);
+        //}
 
-        // POST: /Story/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,Text")] Story story)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(story).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(story);
-        }
+        //// POST: /Story/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include="Id,Title,Content,Date,Rate")] Story story)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(story).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(story);
+        //}
 
         // GET: /Story/Delete/5
         public ActionResult Delete(int? id)
@@ -89,7 +139,7 @@ namespace MvcStory.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = _db.Stories.Find(id);
+            Story story = db.Stories.Find(id);
             if (story == null)
             {
                 return HttpNotFound();
@@ -102,9 +152,9 @@ namespace MvcStory.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Story story = _db.Stories.Find(id);
-            _db.Stories.Remove(story);
-            _db.SaveChanges();
+            Story story = db.Stories.Find(id);
+            db.Stories.Remove(story);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -112,7 +162,7 @@ namespace MvcStory.Controllers
         {
             if (disposing)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
