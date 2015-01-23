@@ -81,7 +81,7 @@ namespace MvcStory.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Date,Rate,Photo")] Story story)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,Date,Rate,Photo")] Story story)
         {
             //var newStory = new Story
             //{
@@ -92,7 +92,16 @@ namespace MvcStory.Controllers
             //    Rate = story.Rate
             //};
             if (ModelState.IsValid)
-            {
+            {        
+               
+                if (story.Photo == null)
+                {
+                    story.Photo = "~/Content/Image/hire_asp_net_developer.png";
+                }
+                else
+                {
+                    story.Photo = story.Photo;
+                }
                 db.Stories.Add(story);
                 db.SaveChanges();
                 return RedirectToAction("Index");

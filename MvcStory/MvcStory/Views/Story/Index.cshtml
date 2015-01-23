@@ -8,34 +8,35 @@
 }
 
 
-
-<p>
+<p></p>
+<div class="row">
 
     @using (Html.BeginForm("Index", "Story", FormMethod.Get))
     {
         @*<p>Title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
             <input type="submit" value="Search" />
             </p>*@
-        <div class="row">
-            <div class="col-lg-6">
+        @*<div class="row">*@
+            <div class="col-lg-4">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">Go!</button>
+                        <button class="btn btn-success" type="submit">Go!</button>
                     </span>
                     <input type="text" name="SearchString" class="form-control" placeholder="Search for...">
                 </div>
             </div>
-        </div>
+        @*</div>*@
     }
-</p>
 
-<span class="label label-primary">Sort by:</span>
-<div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-default">@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</button>
-    <button type="button" class="btn btn-default">@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</button>
 
-    @*Sort by date:@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        sort by title: @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })*@
+    <span class="label label-success">Sort by:</span>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default">@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</button>
+        <button type="button" class="btn btn-default">@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</button>
+
+        @*Sort by date:@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            sort by title: @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })*@
+    </div>
 </div>
 <br />
 
@@ -45,11 +46,9 @@
 }
 else
 {
-
     foreach (var item in Model)
-    {
-      
-        <div class="panel panel-info">
+    {      
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">@Html.DisplayFor(modelItem => item.Title)</h3>
             </div>
@@ -57,17 +56,27 @@ else
                 @*<div class="row">*@
                 <div class="col-xs-6 col-md-4">
                     <a href="#" class="thumbnail">
-                        <img id="img" src="~/Content/Image/hire_asp_net_developer.png" alt="img"/>
+                        <img src="~/Content/Image/hire_asp_net_developer.png" alt="img"/>
                     </a>
                 </div>
                 @*</div>*@
-                @Html.DisplayFor(modelItem => item.Rating) <br />
-                @Html.DisplayFor(modelItem => item.ReleaseDate) <br />
-                @Html.DisplayFor(modelItem => item.Text)  <br />
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </div>
-            </div>
-        
+                <p></p>
+                <p></p>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <p></p>
+                        <p></p>
+                        @Html.DisplayFor(modelItem => item.Rating) <br />
+                        <p></p>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate) <br />
+                        <p></p>
+                        @Html.DisplayFor(modelItem => item.Text)  <br />
+                        <p></p>
+                    </div>
+                    </div>
+                <button class="btn btn-xs btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>                
+              </div>
+          </div>        
     }
 }
 

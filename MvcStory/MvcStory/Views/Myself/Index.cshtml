@@ -3,12 +3,12 @@
     ViewBag.Title = "AboutMe";
 }
 
-<h2>AboutMe</h2>
+<h1>AboutMe</h1>
 
-<h3>Name <span class="label label-info">@ConfigurationManager.AppSettings["AutorName"]</span></h3>
-<h3>Born <span class="label label-info">@ConfigurationManager.AppSettings["BornDate"]</span></h3>
-<h3>Info <span class="label label-info">@ConfigurationManager.AppSettings["AutorInfo"]</span></h3>
-<h3>Image <span class="label label-info"></span></h3>
+<h3>Name <span class="label label-success">@ConfigurationManager.AppSettings["AutorName"]</span></h3>
+<h3>Born <span class="label label-success">@ConfigurationManager.AppSettings["BornDate"]</span></h3>
+<h3>Info <span class="label label-success">@ConfigurationManager.AppSettings["AutorInfo"]</span></h3>
+<h3>Image <span class="label label-success"></span></h3>
 <div>
      
     <div class="row">
@@ -23,5 +23,5 @@
 </div>
 <hr />
 
-@Html.ActionLink("Stories", "Index", "Story")
+<button class="btn btn-success"> @Html.ActionLink("Stories", "Index", "Story")</button>
 
