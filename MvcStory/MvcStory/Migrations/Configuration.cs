@@ -20,7 +20,9 @@ namespace MvcStory.Migrations
             Title = "When Harry Met Sally",
             ReleaseDate = DateTime.Now,   //Parse("2015-1-30")
             Text = "Romantic Comedy Romantic Comedy Romantic Comedy Romantic Comedy Romantic Comedy",
-            Rating = 3
+            Rating = 3,
+           // Photo = "~/Content/Image/hire_asp_net_developer.png" 
+
           
         },
 
@@ -29,7 +31,9 @@ namespace MvcStory.Migrations
              Title = "Ghostbusters ",
              ReleaseDate = DateTime.Parse("1-13-2015"),
              Text = "Comedy Comedy Comedy Comedy Comedy Comedy",
-             Rating = 3
+             Rating = 3,
+            // Photo = "~/Content/Image/hire_asp_net_developer.png" 
+
 
          },
 
@@ -38,7 +42,9 @@ namespace MvcStory.Migrations
              Title = "Ghostbusters 2",
              ReleaseDate = DateTime.Parse("2-01-2015"),
              Text = "Comedy bababababababababababbababab",
-             Rating = 3
+             Rating = 3,
+            // Photo = "~/Content/Image/hire_asp_net_developer.png" 
+
 
          },
 
@@ -48,6 +54,8 @@ namespace MvcStory.Migrations
            ReleaseDate = DateTime.Now, //Parse("2015-1-30"),
            Text = "Western Gang Western GangWestern GangWestern GangWestern Gang ",
            Rating = 3
+           //Photo = "~/Content/Image/hire_asp_net_developer.png" 
+
 
        }
    );

@@ -128,6 +128,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyselfController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
+    <Compile Include="Controllers\StorySliderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,6 +184,7 @@
     <Content Include="Views\Story\Create.cshtml" />
     <Content Include="Views\Story\Index.cshtml" />
     <Content Include="Views\Myself\Index.cshtml" />
+    <Content Include="Views\StorySlider\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501210856586_Initial.resx">
