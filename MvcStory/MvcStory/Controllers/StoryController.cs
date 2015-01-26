@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using MvcStory.Models;
 using PagedList;
@@ -81,32 +82,28 @@ namespace MvcStory.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Text,Date,Rate,Photo")] Story story)
-        {
-            //var newStory = new Story
-            //{
-            //    Id = story.Id,
-            //    Title = story.Title,
-            //    Content = story.Content,
-            //    Date = DateTime.Now,
-            //    Rate = story.Rate
-            //};
+        public ActionResult Create([Bind(Include = "Id,Title,Text,Date,Rate,Photo")] Story story)  //, HttpPostedFileBase file
+        {           
             if (ModelState.IsValid)
-            {        
-               
+            {
+                //if (file != null)                                                                           
+                //{
+                //    file.SaveAs(HttpContext.Server.MapPath("~/Photo/")
+                //                                          + file.FileName);
+                //    story.Photo = file.FileName;
+                //}
                 if (story.Photo == null)
-                {
-                    story.Photo = "~/Content/Image/hire_asp_net_developer.png";
-                }
-                else
-                {
-                    story.Photo = story.Photo;
-                }
+                    {
+                        story.Photo = "~/Content/Image/hire_asp_net_developer.png";
+                    }
+                    else
+                    {
+                        story.Photo = story.Photo;
+                    }
                 db.Stories.Add(story);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(story);
         }
 
@@ -146,3 +143,31 @@ namespace MvcStory.Controllers
         }
     }
 }
+
+
+
+
+
+
+
+
+//var newStory = new Story
+//{
+//    Id = story.Id,
+//    Title = story.Title,
+//    Content = story.Content,
+//    Date = DateTime.Now,
+//    Rate = story.Rate
+//};
+
+
+
+
+//if (story.Photo == null)
+//{
+//    story.Photo = "~/Content/Image/hire_asp_net_developer.png";
+//}
+//else
+//{
+//    story.Photo = story.Photo;
+//}

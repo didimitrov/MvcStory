@@ -2,6 +2,7 @@
 @model PagedList.IPagedList<MvcStory.Models.Story>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 @{
     ViewBag.Title = "Stories";
@@ -12,30 +13,22 @@
 <div class="row">
 
     @using (Html.BeginForm("Index", "Story", FormMethod.Get))
-    {
-        @*<p>Title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-            <input type="submit" value="Search" />
-            </p>*@
-        @*<div class="row">*@
+    {              
             <div class="col-lg-4">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Go!</button>
+                        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true" id="glass"></span>Go!</button>
                     </span>
                     <input type="text" name="SearchString" class="form-control" placeholder="Search for...">
                 </div>
-            </div>
-        @*</div>*@
+            </div>       
     }
 
 
     <span class="label label-success">Sort by:</span>
     <div class="btn-group" role="group" aria-label="...">
         <button type="button" class="btn btn-default">@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</button>
-        <button type="button" class="btn btn-default">@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</button>
-
-        @*Sort by date:@Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-            sort by title: @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })*@
+        <button type="button" class="btn btn-default">@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</button>       
     </div>
 </div>
 <br />
@@ -48,26 +41,25 @@ else
 {
     foreach (var item in Model)
     {      
-        <div class="panel panel-default">
+        <div id="firstDiv" class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">@Html.DisplayFor(modelItem => item.Title)</h3>
             </div>
-            <div class="panel-body">
-                @*<div class="row">*@
+            <div id="firstBody"class="panel-body">              
                 <div class="col-xs-6 col-md-4">
                     <a href="#" class="thumbnail">
                         
-                        @*<img src="@Url.Content(@Model.Photo)" alt="Img" />*@
-                        <img src="~/Content/Image/hire_asp_net_developer.png" alt="img"/>
+                        @Html.DisplayFor(modelItem => item.Photo)
 
+                        @*<img src="@Url.Content(@Model.Photo)" alt="Img" />*@
+
+                        <img src=@Url.Content("~/Content/Image/hire_asp_net_developer.png") />
+                        
                     </a>
-                </div>
-                @*</div>*@
-                <p></p>
+                </div>                               
                 <p></p>
                 <div class="row">
-                    <div class="col-xs-6 col-md-6">
-                        <p></p>
+                    <div class="col-xs-6 col-md-6">                        
                         <p></p>
                         @Html.DisplayFor(modelItem => item.Rating) <br />
                         <p></p>
@@ -79,7 +71,37 @@ else
                     </div>
                 <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>                
               </div>
-          </div>        
+          </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $(".panel-heading").click(function (event) {
+                    $(".panel-body").slideToggle("slow");
+                });
+
+                $(".panel-heading").css("background-color", "black");
+                $(".panel-title").css("color", "lightgreen");
+
+                $(".panel").hover(function () {
+                    $(this).css("border", "1px solid lightgreen");
+                }, function () {
+                    $(this).css("border", "1px solid black");
+                });
+
+                $(".panel").hover(function () {
+                    $(this).css({ "color": "lightgreen", "font-size": "100%" });
+                }, function () {
+                    $(this).css({ "color": "white", "font-size": "100%" });
+                });
+
+                $(".btn").css("color", "black");
+                $("#glass").css("color", "black");
+                $(".btn").css("color", "black");
+                $("span").css("color", "black");
+
+            });
+
+        </script>
     }
 }
 
