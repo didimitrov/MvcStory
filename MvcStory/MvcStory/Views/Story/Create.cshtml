@@ -131,6 +131,16 @@
                 });
             });
             $(".shit").hide();
+            $('h2').animate({
+                left: '350px',
+                opacity: '0.5'
+            }, 'slow', function () {
+                $('h2').animate({
+                    right: '350px',
+                    opacity: '1',
+                    color: 'red'
+                }, 'slow');
+            });
 
         </script>
     </div>
