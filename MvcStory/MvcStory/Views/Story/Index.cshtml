@@ -3,6 +3,9 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.rateit.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/rateit.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Stories";
@@ -61,7 +64,21 @@ else
                 <div class="row">
                     <div class="col-xs-6 col-md-6">                        
                         <p></p>
-                        @Html.DisplayFor(modelItem => item.Rating) <br />
+                        
+                        @*@for (int i = 0; i < item.Rating; i++)
+                        {
+                            
+                            <div class="glyphicon glyphicon-star"></div>
+                        }*@
+                        @*@Html.DisplayFor(modelItem => item.Rating)*@
+                        
+                        @*rateit code*@
+                        <input type="range" value="3" step="1" id="backing4" class="shit">
+                        <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-readonly="true"  data-rateit-resetable="false" data-rateit-ispreset="true"
+                             data-rateit-min="0" data-rateit-max="6">
+                        </div>
+
+                        <br />
                         <p></p>
                         @Html.DisplayFor(modelItem => item.ReleaseDate) <br />
                         <p></p>
@@ -98,7 +115,7 @@ else
                 $("#glass").css("color", "black");
                 $(".btn").css("color", "black");
                 $("span").css("color", "black");
-
+                $(".shit").hide();
             });
 
         </script>
