@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-
+<script src="~/Scripts/jquery.rateit.min.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <link href="~/Content/rateit.css" rel="stylesheet" />
 <h2 style="position: relative">Create new story :)</h2>
@@ -45,33 +45,35 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Rating, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 hidden">
                 @*hidden*@
                 @Html.EditorFor(model => model.Rating)
                 @Html.ValidationMessageFor(model => model.Rating)
-                <input type="range" value="3" step="1" id="backing4" class="shit">
+                @*<input type="range" value="3" step="1" id="backing4" class="shit">
                 <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-readonly="true" data-rateit-resetable="false" data-rateit-ispreset="true"
                      data-rateit-min="0" data-rateit-max="6">
-                </div>
+                </div>*@
             </div>
-            
+
+
+
+
+            @for (int i = 0; i < 6; i++)
+            {
+                if (i < 3)
+                {
+                    <div class="btn bookrating glyphicon glyphicon-star"></div>
+                }
+                else
+                {
+                    <div class="btn bookrating glyphicon glyphicon-star-empty"></div>
+
+                }
+            }
+
         </div>
 
-        
-                @*@for (int i = 0; i <= 5; i++)
-                {
-                    if (i<3)
-                    {
-                          <div class="btn bookRaiting glyphicon glyphicon-star"></div>  
-                    }
-                    else
-                    {
-                          <div class="btn bookRaiting glyphicon glyphicon-star-empty"></div>  
-                            
-                    }
-                }*@
-            
-       
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Photo, new { @class = "control-label col-md-2" })
@@ -111,8 +113,8 @@
         <script>
             $(document).ready(function() {
 
-                var $starButtons = $(".bookRaiting");
-                $("#Likes").val(3);
+                var $starButtons = $(".bookrating");
+                $("#Rating").val(3);
                 $starButtons.on("click", function(evt) {
                     var found = false;
                     $starButtons.each(function(elId, el) {
@@ -124,7 +126,7 @@
                             $(el).addClass("glyphicon-star-empty");
                         }
                         if (evt.currentTarget == el) {
-                            $("#Likes").val(elId + 1);
+                            $("#Rating").val(elId + 1);
                             found = true;
                         }
                     });
@@ -141,7 +143,7 @@
                     color: 'red'
                 }, 'slow');
             });
-
+            $('.bookrating').css('border', 'none');
         </script>
     </div>
 }

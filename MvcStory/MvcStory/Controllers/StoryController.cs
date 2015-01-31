@@ -82,7 +82,7 @@ namespace MvcStory.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Text,Date,Rate,Photo")] Story story)  //, HttpPostedFileBase file
+        public ActionResult Create([Bind(Include = "Id,Title,Text,Date,Rating,Photo")] Story story)  //, HttpPostedFileBase file
         {           
             if (ModelState.IsValid)
             {
